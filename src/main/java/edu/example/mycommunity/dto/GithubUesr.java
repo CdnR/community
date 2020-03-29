@@ -2,7 +2,7 @@ package edu.example.mycommunity.dto;
 
 public class GithubUesr {
     private String name;
-    private long id;
+    private Long id;
     private String bio;
 
     public String getName() {
@@ -13,7 +13,7 @@ public class GithubUesr {
         this.name = name;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -45,7 +45,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUesr githubUesr = githubProvider.getUser(accessToken);
-        if(githubUesr!=null){
+        if(githubUesr!=null&&githubUesr.getId()!=null){
         //登录成功，写cookie和session
             User user = new User();
             String token = UUID.randomUUID().toString();
