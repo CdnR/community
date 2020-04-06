@@ -7,3 +7,7 @@ https://v3.bootcss.com
 https://spring.io
 https://developer.github.com
 https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
+https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-external-config
+
+
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
