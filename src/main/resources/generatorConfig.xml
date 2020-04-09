@@ -7,10 +7,10 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
-        <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:F:/GitCode/mycommunity"
-                        userId="sa"
-                        password="123">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mycommunity?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT"
+                        userId="root"
+                        password="333333">
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -18,20 +18,21 @@
         </javaTypeResolver>
 
         <javaModelGenerator targetPackage="edu.example.mycommunity.model" targetProject="src\main\java">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="mapper"  targetProject="src\main\resources">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="edu.example.mycommunity.mapper"  targetProject="src\main\java">
-            <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="User" ></table>
-        <table tableName="question" domainObjectName="Question" ></table>
+        <table tableName="user" catalog="mycommunity" domainObjectName="User" ></table>
+        <table tableName="question" catalog="mycommunity" domainObjectName="Question" ></table>
+        <table tableName="comment" catalog="mycommunity" domainObjectName="Comment" ></table>
 
     </context>
 </generatorConfiguration>

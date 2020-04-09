@@ -2,7 +2,6 @@ package edu.example.mycommunity.controller;
 
 import edu.example.mycommunity.dto.GithubUesr;
 import edu.example.mycommunity.dto.accessTokenDTO;
-import edu.example.mycommunity.mapper.UserMapper;
 import edu.example.mycommunity.model.User;
 import edu.example.mycommunity.provider.GithubProvider;
 import edu.example.mycommunity.service.UserService;

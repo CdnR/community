@@ -1,5 +1,7 @@
 package edu.example.mycommunity.advice;
 
+import edu.example.mycommunity.dto.ResultDTO;
+import edu.example.mycommunity.exception.CustomizeErrorCode;
 import edu.example.mycommunity.exception.CustomizeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +15,32 @@ import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class CustomizeExceptionHandler {
+
+    @ResponseBody
     @ExceptionHandler(Exception.class)
-    ModelAndView handle(HttpServletRequest request, Throwable e, Model model) {
-        if (e instanceof CustomizeException){
-            model.addAttribute("message",e.getMessage());
+    Object handle(HttpServletRequest request, Throwable e, Model model) {
+        String contentType = request.getContentType();
+        if ("application/json".equals(contentType)){
+            //返回JSON
+            if (e instanceof CustomizeException){
+                return ResultDTO.errorOf((CustomizeException) e);
+            }else {
+                return ResultDTO.errorOf(CustomizeErrorCode.SYS_ERROR);
+            }
+
         }else {
-            model.addAttribute("message","服务器出错");
+            //错误页面跳转
+            if (e instanceof CustomizeException){
+                model.addAttribute("message",e.getMessage());
+            }else {
+                model.addAttribute("message",CustomizeErrorCode.SYS_ERROR.getMessage());
+            }
+
+            return new ModelAndView("error");
         }
 
-        return new ModelAndView("error");
+
+
     }
 
 }
