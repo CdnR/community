@@ -1,5 +1,6 @@
 package edu.example.mycommunity.service;
 
+
 import edu.example.mycommunity.mapper.UserMapper;
 import edu.example.mycommunity.model.User;
 import edu.example.mycommunity.model.UserExample;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Created by codedrinker on 2019/5/23.
+ */
 @Service
 public class UserService {
     @Autowired
@@ -15,21 +19,25 @@ public class UserService {
 
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());
-        List<User> Users = userMapper.selectByExample(userExample);
-        if (Users.size() == 0){
+        userExample.createCriteria()
+                .andAccountIdEqualTo(user.getAccountId());
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users.size() == 0) {
+            // 插入
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
-        }else {
-            User dbUser = Users.get(0);
+        } else {
+            //更新
+            User dbUser = users.get(0);
             User updateUser = new User();
             updateUser.setGmtModified(System.currentTimeMillis());
             updateUser.setAvatarUrl(user.getAvatarUrl());
             updateUser.setName(user.getName());
             updateUser.setToken(user.getToken());
             UserExample example = new UserExample();
-            example.createCriteria().andIdEqualTo(dbUser.getId());
+            example.createCriteria()
+                    .andIdEqualTo(dbUser.getId());
             userMapper.updateByExampleSelective(updateUser, example);
         }
     }

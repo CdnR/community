@@ -1,19 +1,11 @@
 package edu.example.mycommunity.enums;
 
-public enum CommentTypeEnum {
 
+public enum CommentTypeEnum {
     QUESTION(1),
     COMMENT(2);
     private Integer type;
 
-    public static boolean isExist(Integer type) {
-        for (CommentTypeEnum commentTypeEnum : CommentTypeEnum.values()) {
-            if (commentTypeEnum.getType() == type){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public Integer getType() {
         return type;
@@ -21,5 +13,14 @@ public enum CommentTypeEnum {
 
     CommentTypeEnum(Integer type) {
         this.type = type;
+    }
+
+    public static boolean isExist(Integer type) {
+        for (CommentTypeEnum commentTypeEnum : CommentTypeEnum.values()) {
+            if (commentTypeEnum.getType() == type) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -2,6 +2,8 @@ package edu.example.mycommunity.dto;
 
 import lombok.Data;
 
+
+
 @Data
 public class CommentCreateDTO {
     private Long parentId;
